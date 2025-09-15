@@ -3,10 +3,23 @@ const button = document.querySelector("button");
 const todoList = document.querySelector("#todoList");
 
 button.addEventListener("click", addTask);
+// document.querySelector("#dropDown").addEventListener("change", (event) => {
+//   console.log(event.target.value);
+//   if (event.target.value === "Work") {
+//     document.querySelector("#type").textContent = work;
+//     console.log("true");
+//     // const headLine = document.createElement("h3");
+//     // headLine.textContent = event.target.value;
+//   }
+// });
+
 document.querySelector("#dropDown").addEventListener("change", (event) => {
   console.log(event.target.value);
-  if (home === true) {
-    const headLine = document.createElement("h3");
+
+  if (event.target.value === "Work") {
+    console.log("WORK!");
+    document.querySelector("h3").textContent = event.target.value; // eller "Work"
+    console.log("true");
   }
 });
 
