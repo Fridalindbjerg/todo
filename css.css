@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centrerer dem vandret */
+  min-height: 100vh; /* så de kan sprede sig over hele højden */
+  background-color: rgb(65, 64, 64);
+  gap: 0.5rem;
+}
+
+div:first-of-type {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.mainPart {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  max-width: 300px;
+  width: 300px;
+  background-color: gray;
+  height: 50vh;
+  border-radius: 30px;
+  text-align: center;
+}
+
+input,
+button {
+  border: black; /* fjerner kantlinjen */
+  /* outline: none; fjerner den blå ramme ved fokus */
+  background: #5f5959; /* lys grå baggrund */
+  padding: 0.5rem 1rem; /* luft inde i feltet */
+  border-radius: 8px;
+}
+
+H2 {
+  font-size: small;
+}
+
+li {
+  list-style: none;
+  padding-right: 40px;
+}
