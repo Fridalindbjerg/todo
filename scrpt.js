@@ -3,45 +3,41 @@ const button = document.querySelector("button");
 const todoList = document.querySelector("#todoList");
 
 button.addEventListener("click", addTask);
+
+// **********************************************************************
+// Fjernet nedenstående - udskiftet med label-type længere nede
+
 // document.querySelector("#dropDown").addEventListener("change", (event) => {
 //   console.log(event.target.value);
+
 //   if (event.target.value === "Work") {
-//     document.querySelector("#type").textContent = work;
+//     console.log("WORK!");
+//     document.querySelector("h3").textContent = event.target.value; // eller "Work"
 //     console.log("true");
-//     // const headLine = document.createElement("h3");
-//     // headLine.textContent = event.target.value;
 //   }
 // });
-
-document.querySelector("#dropDown").addEventListener("change", (event) => {
-  console.log(event.target.value);
-
-  if (event.target.value === "Work") {
-    console.log("WORK!");
-    document.querySelector("h3").textContent = event.target.value; // eller "Work"
-    console.log("true");
-  }
-});
+// *****************************************************************************
 
 const tasks = []; // array til alle tasks
 
 function addTask() {
   const text = input.value;
+
+  // Ligesom i dit change event, kan vi hente værdien direkte, når vi opretter en task:
+  const type = document.querySelector("#dropDown").value; // henter valgt type
+
   if (text === "") return;
 
-  // opret et objekt for task
+  // Udvider task-objekt, så det indeholder type:
   const task = {
     text: text,
     done: false,
-    id: Date.now(), // unik id, fx baseret på tidspunkt
-    // type: input.value
+    id: Date.now(),
+    type: type, // Her
   };
 
-  console.log(task);
-
-  tasks.push(task); // tilføj til array
-
-  renderTasks(); // opdater listen i DOM
+  tasks.push(task);
+  renderTasks();
   input.value = "";
 }
 
@@ -57,7 +53,8 @@ function renderTasks() {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "X";
-    deleteBtn.addEventListener("click", deleteTask);
+    deleteBtn.classList.add("delete-btn"); // <-- giver en klasse til styling
+    deleteBtn.addEventListener("click", () => deleteTask(task.id));
 
     checkbox.addEventListener("change", () => {
       task.done = checkbox.checked; // opdater objektet
@@ -65,8 +62,16 @@ function renderTasks() {
       renderTasks(); // genrender listen
     });
 
+    // ****************** Lavet denne ændring ************************
+
+    // Bygger label, og tilføjer task.type foran teksten:
     const label = document.createElement("label");
-    label.textContent = task.text;
+    label.textContent = `${task.type}: ${task.text}`;
+
+    //     const label = document.createElement("label");
+    //     label.textContent = task.text;
+
+    // ***************************************************************
 
     li.appendChild(checkbox);
     li.appendChild(label);
@@ -82,13 +87,23 @@ function renderTasks() {
 
 function deleteTask() {
   console.log("deleteBtn is clicked");
-  if (confirm("Press ok to delete your task")) {
+  if (confirm("You are about to delete this task! Press OK to delete task.")) {
     tasks.splice(0, 1); // slet tasken
     renderTasks(); // opdater DOM
   } else {
     console.log("User canceled their action");
   }
 }
+
+// document.querySelector("#dropDown").addEventListener("change", (event) => {
+//   console.log(event.target.value);
+//   if (event.target.value === "Work") {
+//     document.querySelector("#type").textContent = work;
+//     console.log("true");
+//     // const headLine = document.createElement("h3");
+//     // headLine.textContent = event.target.value;
+//   }
+// });
 
 // function addTask() {
 //   const text = input.value;
