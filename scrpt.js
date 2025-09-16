@@ -18,7 +18,14 @@ button.addEventListener("click", addTask);
 // });
 // *****************************************************************************
 
-const tasks = []; // array til alle tasks
+let tasks = []; // array til alle tasks
+const receivedFromLocalStorage = localStorage.getItem("tasks");
+
+if (receivedFromLocalStorage !== null) {
+  tasks = JSON.parse(receivedFromLocalStorage);
+  renderTasks();
+}
+console.log("localstorage", localStorage.getItem("tasks"));
 
 function addTask() {
   const text = input.value;
@@ -44,6 +51,8 @@ function addTask() {
 function renderTasks() {
   todoList.innerHTML = ""; // ryd TODO-liste
   todoDone.innerHTML = ""; // ryd DONE-liste
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 
   tasks.forEach((task) => {
     const li = document.createElement("li");
