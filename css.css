@@ -32,6 +32,7 @@ button {
   background: #5f5959; /* lys grå baggrund */
   padding: 0.5rem 1rem; /* luft inde i feltet */
   border-radius: 8px;
+  color: white;
 }
 
 .delete-btn {
@@ -44,8 +45,15 @@ button {
   padding: 0;
 }
 
+h1 {
+  font-size: 50px;
+  color: white;
+}
+
 h2 {
   font-size: 20px;
+  font-weight: lighter;
+  color: white;
 }
 
 h3 {
